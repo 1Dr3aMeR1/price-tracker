@@ -1,17 +1,29 @@
 package org.example;
 
-import org.example.marketplaces.api.Marketplace;
-import org.example.marketplaces.impl.Wildberries.Wildberries;
+import org.example.bot.BotConfig;
+import org.example.bot.TelegramBot;
+import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
-import java.net.http.HttpClient;
-
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) throws Exception {
-        HttpClient client = HttpClient.newHttpClient();
-        Marketplace wildberries = new Wildberries(client);
-        System.out.println(wildberries.product("258013489").price());
+    public static void main(String[] args) {
+        //Запуск бота
+        try {
+            TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
+            TelegramBot bot = new TelegramBot(
+                    BotConfig.getUsername(),
+                    BotConfig.getToken()
+            );
+            botsApi.registerBot(bot);
+            System.out.println("Bot started");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try (var connect = org.example.repository.Database.getConnection()) {
+            System.out.println("Connected to DataBase");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
-
