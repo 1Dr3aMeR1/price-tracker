@@ -39,3 +39,4 @@ build/
 
 src/main/java/org/example/bot/BotConfig.java
 src/main/java/org/example/repository/Database.java
+.idea
