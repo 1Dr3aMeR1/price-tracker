@@ -33,7 +33,12 @@ public class TelegramBot extends TelegramLongPollingBot {
 
             if (text.equals("/start")) {
                 new org.example.service.UserService().registerUser(chatId, update.getMessage().getFrom().getUserName());
-                sendText(chatId, "Привет, " + update.getMessage().getFrom().getFirstName() + "!");
+                SendMessage msg = ButtonKeboard.withMainMenu(chatId, "Привет! Выбери действие:");
+                try {
+                    execute(msg);
+                } catch (TelegramApiException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
     }
