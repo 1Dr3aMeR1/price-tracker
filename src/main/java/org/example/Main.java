@@ -1,7 +1,8 @@
 package org.example;
 
-import org.example.bot.BotConfig;
+import org.example.config.BotConfig;
 import org.example.bot.TelegramBot;
+import org.example.config.Database;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
@@ -20,7 +21,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        try (var connect = org.example.repository.Database.getConnection()) {
+        try (var connect = Database.getConnection()) {
             System.out.println("Connected to DataBase");
         } catch (Exception e) {
             e.printStackTrace();

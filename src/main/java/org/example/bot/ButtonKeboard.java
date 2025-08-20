@@ -13,8 +13,8 @@ public class ButtonKeboard {
     public static ReplyKeyboardMarkup mainMenu() {
 
         ReplyKeyboardMarkup keyboardMarkup = new ReplyKeyboardMarkup();
-        keyboardMarkup.setResizeKeyboard(true); // подгоняем под экран
-        keyboardMarkup.setOneTimeKeyboard(false); // оставляем клавиатуру включённой
+        keyboardMarkup.setResizeKeyboard(true);
+        keyboardMarkup.setOneTimeKeyboard(false);
 
         KeyboardRow row1 = new KeyboardRow();
         row1.add(new KeyboardButton("➕ Добавить товар"));
